@@ -1,7 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Building2, Calendar, Users, TrendingUp, Heart, Linkedin, MessageSquare } from "lucide-react";
+import {
+  Building2,
+  Calendar,
+  Users,
+  TrendingUp,
+  Heart,
+  Linkedin,
+  MessageSquare,
+} from "lucide-react";
 import Link from "next/link";
 
 export default function CompanyView() {
@@ -20,12 +28,13 @@ export default function CompanyView() {
     {
       type: "company",
       title: "Q4 Earnings Beat Expectations",
-      description: "TechCorp reported 25% revenue growth, exceeding analyst predictions",
+      description:
+        "TechCorp reported 25% revenue growth, exceeding analyst predictions",
       date: "2 days ago",
       impact: "positive",
     },
     {
-      type: "company", 
+      type: "company",
       title: "New Partnership with Azure",
       description: "Announced strategic partnership to expand cloud services",
       date: "1 week ago",
@@ -58,7 +67,7 @@ export default function CompanyView() {
     {
       name: "Marcus Thompson",
       role: "CTO",
-      avatar: "M", 
+      avatar: "M",
       personalUpdates: [
         "Just returned from European vacation",
         "Celebrating 10-year anniversary at TechCorp",
@@ -85,18 +94,25 @@ export default function CompanyView() {
 
   const getRelationshipColor = (strength: string) => {
     switch (strength) {
-      case "strong": return "text-green-600 bg-green-50";
-      case "medium": return "text-yellow-600 bg-yellow-50"; 
-      case "new": return "text-blue-600 bg-blue-50";
-      default: return "text-gray-600 bg-gray-50";
+      case "strong":
+        return "text-green-600 bg-green-50";
+      case "medium":
+        return "text-yellow-600 bg-yellow-50";
+      case "new":
+        return "text-blue-600 bg-blue-50";
+      default:
+        return "text-gray-600 bg-gray-50";
     }
   };
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case "positive": return "text-green-600 bg-green-50";
-      case "negative": return "text-red-600 bg-red-50";
-      default: return "text-blue-600 bg-blue-50";
+      case "positive":
+        return "text-green-600 bg-green-50";
+      case "negative":
+        return "text-red-600 bg-red-50";
+      default:
+        return "text-blue-600 bg-blue-50";
     }
   };
 
@@ -133,15 +149,22 @@ export default function CompanyView() {
             </div>
             <div>
               <h1 className="text-3xl font-bold">{company.name}</h1>
-              <p className="text-gray-600">{company.industry} • {company.employees} employees • {company.revenue} revenue</p>
+              <p className="text-gray-600">
+                {company.industry} • {company.employees} employees •{" "}
+                {company.revenue} revenue
+              </p>
             </div>
           </div>
-          
+
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center gap-3">
             <Calendar className="w-5 h-5 text-blue-600" />
             <div>
-              <div className="font-semibold text-blue-900">Upcoming Meeting</div>
-              <div className="text-blue-700">{company.meetingDate} at {company.meetingTime}</div>
+              <div className="font-semibold text-blue-900">
+                Upcoming Meeting
+              </div>
+              <div className="text-blue-700">
+                {company.meetingDate} at {company.meetingTime}
+              </div>
             </div>
           </div>
         </div>
@@ -153,19 +176,25 @@ export default function CompanyView() {
               <TrendingUp className="w-5 h-5" />
               Recent Company Events
             </h2>
-            
+
             <div className="space-y-4">
               {companyEvents.map((event, i) => (
                 <Card key={i} className="shadow-sm">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
-                      <div className={`px-2 py-1 text-xs rounded-full ${getImpactColor(event.impact)}`}>
+                      <div
+                        className={`px-2 py-1 text-xs rounded-full ${getImpactColor(event.impact)}`}
+                      >
                         {event.impact}
                       </div>
                       <div className="flex-1">
                         <h3 className="font-semibold">{event.title}</h3>
-                        <p className="text-gray-600 text-sm mt-1">{event.description}</p>
-                        <p className="text-gray-400 text-xs mt-2">{event.date}</p>
+                        <p className="text-gray-600 text-sm mt-1">
+                          {event.description}
+                        </p>
+                        <p className="text-gray-400 text-xs mt-2">
+                          {event.date}
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -180,7 +209,7 @@ export default function CompanyView() {
               <Users className="w-5 h-5" />
               Meeting Attendees
             </h2>
-            
+
             <div className="space-y-6">
               {meetingContacts.map((contact, i) => (
                 <Card key={i} className="shadow-sm">
@@ -191,9 +220,15 @@ export default function CompanyView() {
                         <AvatarFallback>{contact.avatar}</AvatarFallback>
                       </Avatar>
                       <div className="flex-1">
-                        <div className="font-semibold text-lg">{contact.name}</div>
-                        <div className="text-sm text-gray-500">{contact.role}</div>
-                        <div className={`inline-flex items-center px-2 py-1 text-xs rounded-full mt-1 ${getRelationshipColor(contact.relationshipStrength)}`}>
+                        <div className="font-semibold text-lg">
+                          {contact.name}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          {contact.role}
+                        </div>
+                        <div
+                          className={`inline-flex items-center px-2 py-1 text-xs rounded-full mt-1 ${getRelationshipColor(contact.relationshipStrength)}`}
+                        >
                           {contact.relationshipStrength} relationship
                         </div>
                       </div>
@@ -201,7 +236,9 @@ export default function CompanyView() {
 
                     {/* Work Focus */}
                     <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-                      <div className="text-sm font-medium text-gray-700">Current Focus</div>
+                      <div className="text-sm font-medium text-gray-700">
+                        Current Focus
+                      </div>
                       <div className="text-sm">{contact.workFocus}</div>
                     </div>
 
@@ -213,7 +250,9 @@ export default function CompanyView() {
                       </div>
                       <ul className="space-y-1">
                         {contact.personalUpdates.map((update, j) => (
-                          <li key={j} className="text-sm text-gray-600">• {update}</li>
+                          <li key={j} className="text-sm text-gray-600">
+                            • {update}
+                          </li>
                         ))}
                       </ul>
                     </div>
@@ -224,10 +263,18 @@ export default function CompanyView() {
 
                     {/* Actions */}
                     <div className="flex gap-3">
-                      <Button size="sm" variant="default" className="flex items-center gap-2">
+                      <Button
+                        size="sm"
+                        variant="default"
+                        className="flex items-center gap-2"
+                      >
                         <Linkedin className="w-4 h-4" /> LinkedIn
                       </Button>
-                      <Button size="sm" variant="outline" className="flex items-center gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex items-center gap-2"
+                      >
                         <MessageSquare className="w-4 h-4" /> Notes
                       </Button>
                     </div>
