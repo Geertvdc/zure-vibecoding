@@ -1,10 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Building2,
-  Calendar,
-  TrendingUp,
-} from "lucide-react";
+import { Building2, Calendar, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -67,10 +63,10 @@ export default function CompanyView() {
       {/* Sidebar */}
       <aside className="w-60 bg-white border-r p-6 flex flex-col gap-6">
         <div className="flex items-center">
-          <Image 
-            src="/bs-logo.svg" 
-            alt="Business Stalker Logo" 
-            width={120} 
+          <Image
+            src="/bs-logo.svg"
+            alt="Business Stalker Logo"
+            width={120}
             height={40}
             className="h-10 w-auto"
           />
@@ -149,10 +145,8 @@ export default function CompanyView() {
                           {event.description}
                         </p>
                         <div className="flex items-center justify-between mt-2">
-                          <p className="text-gray-400 text-xs">
-                            {event.date}
-                          </p>
-                          <a 
+                          <p className="text-gray-400 text-xs">{event.date}</p>
+                          <a
                             href={event.sourceUrl}
                             target="_blank"
                             rel="noopener noreferrer"

@@ -38,10 +38,10 @@ export default function Dashboard() {
       {/* Sidebar */}
       <aside className="w-60 bg-white border-r p-6 flex flex-col gap-6">
         <div className="flex items-center">
-          <Image 
-            src="/bs-logo.svg" 
-            alt="Business Stalker Logo" 
-            width={120} 
+          <Image
+            src="/bs-logo.svg"
+            alt="Business Stalker Logo"
+            width={120}
             height={40}
             className="h-10 w-auto"
           />
