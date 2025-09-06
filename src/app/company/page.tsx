@@ -1,5 +1,5 @@
-import CompanyView from "@/components/company-view";
+import CompanyList from "@/components/company-list";
 
 export default function CompanyPage() {
-  return <CompanyView />;
+  return <CompanyList />;
 }
