@@ -86,6 +86,13 @@ export default function CompanyView() {
 
       {/* Main content */}
       <main className="flex-1 p-8">
+        {/* Back navigation */}
+        <div className="mb-6">
+          <Link href="/company" className="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-2">
+            ← Back to Companies
+          </Link>
+        </div>
+        
         {/* Company Header */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
@@ -101,7 +108,7 @@ export default function CompanyView() {
             </div>
           </div>
 
-          <Link href="/company/meeting">
+          <Link href="/company/techcorp-solutions/meeting">
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center gap-3 hover:bg-blue-100 transition-colors cursor-pointer">
               <Calendar className="w-5 h-5 text-blue-600" />
               <div>
