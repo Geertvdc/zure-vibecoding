@@ -108,6 +108,32 @@ The project uses Tailwind CSS with a custom design system based on shadcn/ui. CS
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+### 🚀 PR Preview System
+
+This repository automatically creates preview deployments for every Pull Request, allowing you to visually verify changes before merging.
+
+**How it works:**
+
+- 📝 When you open a PR, GitHub Actions automatically builds and deploys a preview
+- 🔗 A comment appears on your PR with a unique preview link
+- 🔄 The preview updates automatically when you push new commits
+- 🧹 Previews are automatically cleaned up when PRs are closed/merged
+
+**Preview URL format:**
+
+```
+https://geertvdc.github.io/zure-vibecoding/pr-{PR_NUMBER}/
+```
+
+**What gets tested:**
+
+- ✅ Application builds successfully
+- ✅ All linting and type checks pass
+- ✅ Static export works correctly
+- ✅ UI changes are visually verifiable
+
+This system ensures every change can be reviewed and tested before it reaches the main branch!
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -1,0 +1,101 @@
+name: Cleanup PR Preview
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove PR preview directory
+        run: |
+          if [ -d "pr-${{ github.event.pull_request.number }}" ]; then
+            rm -rf "pr-${{ github.event.pull_request.number }}"
+            echo "Removed preview directory for PR #${{ github.event.pull_request.number }}"
+          else
+            echo "Preview directory for PR #${{ github.event.pull_request.number }} not found"
+          fi
+
+      - name: Update preview index
+        run: |
+          # Create updated index.html without the closed PR
+          cat > index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>PR Previews - Business Stalker</title>
+              <style>
+                  body { font-family: system-ui, sans-serif; margin: 40px; }
+                  .preview-link { display: block; padding: 12px; margin: 8px 0; 
+                                 background: #f5f5f5; border-radius: 6px; text-decoration: none; }
+                  .preview-link:hover { background: #e5e5e5; }
+                  .no-previews { color: #666; font-style: italic; }
+              </style>
+          </head>
+          <body>
+              <h1>Business Stalker - PR Previews</h1>
+              <p>Available preview deployments:</p>
+          EOF
+
+          # List remaining preview directories
+          if ls -d pr-*/ 2>/dev/null; then
+            for dir in pr-*/; do
+              pr_num=${dir#pr-}
+              pr_num=${pr_num%/}
+              echo "    <a href=\"./${dir}\" class=\"preview-link\">PR #${pr_num}</a>" >> index.html
+            done
+          else
+            echo "    <p class=\"no-previews\">No active PR previews</p>" >> index.html
+          fi
+
+          cat >> index.html << 'EOF'
+          </body>
+          </html>
+          EOF
+
+      - name: Commit cleanup changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "Cleanup preview for PR #${{ github.event.pull_request.number }}"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+
+            const commentBody = `🧹 **PR Preview cleaned up**
+
+            The preview deployment for this PR has been removed.
+
+            Thanks for using the preview system! 🎉`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: commentBody
+            });

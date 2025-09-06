@@ -48,6 +48,7 @@ When this project gets actual code, follow these steps:
    - For development dependencies: `npm install --save-dev [package]`
 
 3. **Project structure validation**:
+
    ```bash
    ls -la
    ```
