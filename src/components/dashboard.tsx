@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Bell, MessageSquare, Linkedin } from "lucide-react";
+import Link from "next/link";
 
 export default function Dashboard() {
   const interactions = [
@@ -37,12 +38,17 @@ export default function Dashboard() {
       <aside className="w-60 bg-white border-r p-6 flex flex-col gap-6">
         <div className="text-2xl font-bold">BS</div>
         <nav className="flex flex-col gap-4 text-gray-600">
-          <Button variant="ghost" className="justify-start">
+          <Button variant="default" className="justify-start">
             Dashboard
           </Button>
           <Button variant="ghost" className="justify-start">
             My Contacts
           </Button>
+          <Link href="/company">
+            <Button variant="ghost" className="justify-start w-full">
+              Company View
+            </Button>
+          </Link>
           <Button variant="ghost" className="justify-start">
             Settings
           </Button>
