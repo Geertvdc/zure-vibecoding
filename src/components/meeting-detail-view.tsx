@@ -11,6 +11,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function MeetingDetailView() {
   // Mock company data (should match main company view)
@@ -83,7 +84,15 @@ export default function MeetingDetailView() {
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
       <aside className="w-60 bg-white border-r p-6 flex flex-col gap-6">
-        <div className="text-2xl font-bold">BS</div>
+        <div className="flex items-center">
+          <Image
+            src="/bs-logo.svg"
+            alt="Business Stalker Logo"
+            width={120}
+            height={40}
+            className="h-10 w-auto"
+          />
+        </div>
         <nav className="flex flex-col gap-4 text-gray-600">
           <Link href="/">
             <Button variant="ghost" className="justify-start w-full">
@@ -133,11 +142,10 @@ export default function MeetingDetailView() {
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center gap-3">
             <Building2 className="w-5 h-5 text-blue-600" />
             <div>
-              <div className="font-semibold text-blue-900">
-                {company.name}
-              </div>
+              <div className="font-semibold text-blue-900">{company.name}</div>
               <div className="text-blue-700">
-                {company.industry} • {company.employees} employees • {company.revenue} revenue
+                {company.industry} • {company.employees} employees •{" "}
+                {company.revenue} revenue
               </div>
             </div>
           </div>

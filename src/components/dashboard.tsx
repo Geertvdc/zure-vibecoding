@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Bell, MessageSquare, Linkedin } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Dashboard() {
   const interactions = [
@@ -36,7 +37,15 @@ export default function Dashboard() {
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
       <aside className="w-60 bg-white border-r p-6 flex flex-col gap-6">
-        <div className="text-2xl font-bold">BS</div>
+        <div className="flex items-center">
+          <Image
+            src="/bs-logo.svg"
+            alt="Business Stalker Logo"
+            width={120}
+            height={40}
+            className="h-10 w-auto"
+          />
+        </div>
         <nav className="flex flex-col gap-4 text-gray-600">
           <Button variant="default" className="justify-start">
             Dashboard
