@@ -1,14 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   Building2,
   Calendar,
-  Users,
   TrendingUp,
-  Heart,
-  Linkedin,
-  MessageSquare,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -32,6 +27,8 @@ export default function CompanyView() {
         "TechCorp reported 25% revenue growth, exceeding analyst predictions",
       date: "2 days ago",
       impact: "positive",
+      source: "TechCorp Investor Relations",
+      sourceUrl: "https://investor.techcorp.com/earnings",
     },
     {
       type: "company",
@@ -39,6 +36,8 @@ export default function CompanyView() {
       description: "Announced strategic partnership to expand cloud services",
       date: "1 week ago",
       impact: "positive",
+      source: "Microsoft News Center",
+      sourceUrl: "https://news.microsoft.com/partnerships",
     },
     {
       type: "company",
@@ -46,64 +45,10 @@ export default function CompanyView() {
       description: "Opening new development center, hiring 200+ engineers",
       date: "2 weeks ago",
       impact: "neutral",
+      source: "TechCorp Blog",
+      sourceUrl: "https://blog.techcorp.com/expansion",
     },
   ];
-
-  // Mock contacts at the company we're meeting
-  const meetingContacts = [
-    {
-      name: "Sarah Chen",
-      role: "VP of Engineering",
-      avatar: "S",
-      personalUpdates: [
-        "Recently moved to new house in Bellevue",
-        "Daughter started at University of Washington",
-        "Posted about team's successful product launch",
-      ],
-      workFocus: "Leading cloud migration initiative",
-      lastInteraction: "6 months ago",
-      relationshipStrength: "strong",
-    },
-    {
-      name: "Marcus Thompson",
-      role: "CTO",
-      avatar: "M",
-      personalUpdates: [
-        "Just returned from European vacation",
-        "Celebrating 10-year anniversary at TechCorp",
-        "Speaking at upcoming tech conference",
-      ],
-      workFocus: "Digital transformation strategy",
-      lastInteraction: "3 months ago",
-      relationshipStrength: "medium",
-    },
-    {
-      name: "Lisa Rodriguez",
-      role: "Head of Cloud Partnerships",
-      avatar: "L",
-      personalUpdates: [
-        "Marathon training for Boston Marathon",
-        "Recently promoted to current role",
-        "Active in local tech meetups",
-      ],
-      workFocus: "Strategic partnership development",
-      lastInteraction: "Never met",
-      relationshipStrength: "new",
-    },
-  ];
-
-  const getRelationshipColor = (strength: string) => {
-    switch (strength) {
-      case "strong":
-        return "text-green-600 bg-green-50";
-      case "medium":
-        return "text-yellow-600 bg-yellow-50";
-      case "new":
-        return "text-blue-600 bg-blue-50";
-      default:
-        return "text-gray-600 bg-gray-50";
-    }
-  };
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
@@ -156,20 +101,22 @@ export default function CompanyView() {
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center gap-3">
-            <Calendar className="w-5 h-5 text-blue-600" />
-            <div>
-              <div className="font-semibold text-blue-900">
-                Upcoming Meeting
-              </div>
-              <div className="text-blue-700">
-                {company.meetingDate} at {company.meetingTime}
+          <Link href="/company/meeting">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center gap-3 hover:bg-blue-100 transition-colors cursor-pointer">
+              <Calendar className="w-5 h-5 text-blue-600" />
+              <div>
+                <div className="font-semibold text-blue-900">
+                  Upcoming Meeting
+                </div>
+                <div className="text-blue-700">
+                  {company.meetingDate} at {company.meetingTime}
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="max-w-4xl">
           {/* Company Events & News */}
           <div>
             <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
@@ -192,91 +139,20 @@ export default function CompanyView() {
                         <p className="text-gray-600 text-sm mt-1">
                           {event.description}
                         </p>
-                        <p className="text-gray-400 text-xs mt-2">
-                          {event.date}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Meeting Attendees */}
-          <div>
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <Users className="w-5 h-5" />
-              Meeting Attendees
-            </h2>
-
-            <div className="space-y-6">
-              {meetingContacts.map((contact, i) => (
-                <Card key={i} className="shadow-sm">
-                  <CardContent className="p-6">
-                    {/* Contact Header */}
-                    <div className="flex items-center gap-4 mb-4">
-                      <Avatar className="h-12 w-12">
-                        <AvatarFallback>{contact.avatar}</AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1">
-                        <div className="font-semibold text-lg">
-                          {contact.name}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {contact.role}
-                        </div>
-                        <div
-                          className={`inline-flex items-center px-2 py-1 text-xs rounded-full mt-1 ${getRelationshipColor(contact.relationshipStrength)}`}
-                        >
-                          {contact.relationshipStrength} relationship
+                        <div className="flex items-center justify-between mt-2">
+                          <p className="text-gray-400 text-xs">
+                            {event.date}
+                          </p>
+                          <a 
+                            href={event.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:text-blue-800 text-xs underline"
+                          >
+                            Source: {event.source}
+                          </a>
                         </div>
                       </div>
-                    </div>
-
-                    {/* Work Focus */}
-                    <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-                      <div className="text-sm font-medium text-gray-700">
-                        Current Focus
-                      </div>
-                      <div className="text-sm">{contact.workFocus}</div>
-                    </div>
-
-                    {/* Personal Updates */}
-                    <div className="mb-4">
-                      <div className="text-sm font-medium text-gray-700 mb-2 flex items-center gap-1">
-                        <Heart className="w-4 h-4" />
-                        Personal Updates
-                      </div>
-                      <ul className="space-y-1">
-                        {contact.personalUpdates.map((update, j) => (
-                          <li key={j} className="text-sm text-gray-600">
-                            • {update}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="text-xs text-gray-400 mb-4">
-                      Last interaction: {contact.lastInteraction}
-                    </div>
-
-                    {/* Actions */}
-                    <div className="flex gap-3">
-                      <Button
-                        size="sm"
-                        variant="default"
-                        className="flex items-center gap-2"
-                      >
-                        <Linkedin className="w-4 h-4" /> LinkedIn
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="flex items-center gap-2"
-                      >
-                        <MessageSquare className="w-4 h-4" /> Notes
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
