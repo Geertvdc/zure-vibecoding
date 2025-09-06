@@ -1,0 +1,59 @@
+name: Setup GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      [".github/workflows/pr-preview.yml", ".github/workflows/setup-pages.yml"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  setup-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Create initial Pages deployment
+        run: |
+          mkdir -p ./pages-setup
+          cat > ./pages-setup/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Business Stalker - PR Previews</title>
+              <style>
+                  body { font-family: system-ui, sans-serif; margin: 40px; text-align: center; }
+                  .container { max-width: 600px; margin: 0 auto; }
+                  .status { background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0; }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>🚀 Business Stalker</h1>
+                  <h2>PR Preview System</h2>
+                  <div class="status">
+                      <p><strong>✅ GitHub Pages is now configured!</strong></p>
+                      <p>PR previews will appear here automatically when you create pull requests.</p>
+                  </div>
+                  <p>🔗 Create a PR to see your first preview deployment!</p>
+              </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./pages-setup"
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

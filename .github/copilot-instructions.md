@@ -7,8 +7,9 @@ Business Stalker is an application designed to interact better with business rel
 ## Repository Current State
 
 This repository is in the initial development phase with basic project structure:
+
 - README.md: Basic project description
-- agents.md: Planned agent architecture documentation  
+- agents.md: Planned agent architecture documentation
 - .gitignore: Configured for Node.js project (indicates planned technology stack)
 - LICENSE: MIT License
 
@@ -17,54 +18,66 @@ This repository is in the initial development phase with basic project structure
 ## Working Effectively
 
 ### Prerequisites and Environment Setup
+
 - Node.js v20.19.4 and npm 10.8.2 are available and validated to work
 - Git 2.51.0 is available and validated
 - curl 8.5.0 and wget available for downloading dependencies
 - vim editor available for file editing
 
 ### Initial Project Setup (When Adding Code)
+
 When this project gets actual code, follow these steps:
 
 1. **Initialize Node.js project** (if not done):
+
    ```bash
    npm init -y
    ```
+
    - Takes approximately 0.5 seconds
    - Creates package.json with default configuration
 
 2. **Install dependencies** (when package.json exists):
+
    ```bash
    npm install
    ```
+
    - **TIMING**: Typical npm install takes 3-5 seconds for small projects, 30+ seconds for larger projects
    - **NEVER CANCEL**: Set timeout to 60+ minutes for large dependency trees
    - For development dependencies: `npm install --save-dev [package]`
 
 3. **Project structure validation**:
+
    ```bash
    ls -la
    ```
+
    - Takes < 0.01 seconds
    - Validates current project structure
 
 ### Git Operations (Currently Working)
+
 These git commands are validated to work in current state:
 
 ```bash
 git status
 ```
+
 - Takes < 0.01 seconds
 - Shows current repository status
 
 ```bash
 git log --oneline -10
 ```
+
 - Shows recent commit history
 - Current history shows initial project setup
 
 ```bash
 git branch -a
 ```
+
 - Shows available branches
 - Currently on copilot/fix-3 branch
 
@@ -73,16 +86,19 @@ git branch -a
 **CURRENT STATE**: No build or test processes exist yet. The following are guidelines for when code is added:
 
 ### Build Commands (When Implemented)
+
 - **NEVER CANCEL**: All build commands should have 60+ minute timeouts
 - Expected build time: TBD (will update when build process is implemented)
 - Build command: TBD (likely `npm run build` based on .gitignore structure)
 
-### Test Commands (When Implemented)  
+### Test Commands (When Implemented)
+
 - **NEVER CANCEL**: Test suites should have 30+ minute timeouts
 - Test command: TBD (likely `npm test` or `npm run test`)
 - Expected test time: TBD (will update when tests are implemented)
 
 ### Linting (When Implemented)
+
 - Lint command: TBD (likely `npm run lint`)
 - Format command: TBD (likely `npm run format`)
 
@@ -91,14 +107,17 @@ git branch -a
 **CURRENT STATE**: No application exists yet. The following are expectations based on project planning:
 
 ### Development Server (When Implemented)
+
 Based on agents.md, this will likely be a web application with frontend and backend components:
+
 - Frontend development: TBD
-- Backend development: TBD  
+- Backend development: TBD
 - Expected startup time: TBD
 
 ## Validation Requirements
 
 ### Manual Testing Scenarios (When Application Exists)
+
 **CRITICAL**: After making changes to the application (when it exists), always run through these validation scenarios:
 
 1. **Basic Functionality Test**: TBD (will define when application features are implemented)
@@ -110,13 +129,14 @@ Based on agents.md, this will likely be a web application with frontend and back
 ## Common Tasks
 
 ### Validated Commands (Current State)
+
 The following commands are tested and work in the current repository state:
 
 ```bash
 # View repository structure (< 0.01 seconds)
 ls -la
 
-# Check git status (< 0.01 seconds)  
+# Check git status (< 0.01 seconds)
 git status
 
 # View project documentation (< 0.01 seconds)
@@ -132,6 +152,7 @@ npm --version   # Returns: 10.8.2
 ```
 
 ### Repository Structure Reference
+
 ```
 .
 ├── .git/           # Git repository metadata
@@ -143,7 +164,9 @@ npm --version   # Returns: 10.8.2
 ```
 
 ### Technology Stack (Planned)
+
 Based on .gitignore and project documentation:
+
 - **Runtime**: Node.js (confirmed available)
 - **Package Manager**: npm (confirmed available)
 - **Architecture**: Multi-agent system (Frontend Agent, Backend Agent)
@@ -160,8 +183,9 @@ Based on .gitignore and project documentation:
 ## Future Updates Required
 
 This instruction file MUST be updated when:
+
 1. package.json is added with actual scripts
-2. Source code is implemented  
+2. Source code is implemented
 3. Build processes are established
 4. Test suites are created
 5. CI/CD pipelines are added
