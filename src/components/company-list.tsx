@@ -145,7 +145,9 @@ export default function CompanyList() {
                       <h3 className="text-lg font-semibold mb-1">
                         {company.name}
                       </h3>
-                      <p className="text-sm text-gray-600">{company.industry}</p>
+                      <p className="text-sm text-gray-600">
+                        {company.industry}
+                      </p>
                     </div>
                     <span
                       className={`px-2 py-1 text-xs rounded-full ${getStatusColor(company.status)}`}
@@ -170,7 +172,9 @@ export default function CompanyList() {
                   <div className="border-t pt-4 space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Last contact:</span>
-                      <span className="text-gray-900">{company.lastInteraction}</span>
+                      <span className="text-gray-900">
+                        {company.lastInteraction}
+                      </span>
                     </div>
                     {company.upcomingMeeting && (
                       <div className="flex justify-between text-sm">

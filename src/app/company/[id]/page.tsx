@@ -7,11 +7,11 @@ export default function CompanyDetailPage() {
 // This function generates the static params for the company IDs
 export function generateStaticParams() {
   return [
-    { id: 'techcorp-solutions' },
-    { id: 'innovate-labs' },
-    { id: 'global-finance' },
-    { id: 'startup-dynamics' },
-    { id: 'enterprise-solutions' },
-    { id: 'cloud-ventures' },
+    { id: "techcorp-solutions" },
+    { id: "innovate-labs" },
+    { id: "global-finance" },
+    { id: "startup-dynamics" },
+    { id: "enterprise-solutions" },
+    { id: "cloud-ventures" },
   ];
 }

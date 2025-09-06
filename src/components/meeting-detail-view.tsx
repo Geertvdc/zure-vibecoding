@@ -133,11 +133,10 @@ export default function MeetingDetailView() {
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center gap-3">
             <Building2 className="w-5 h-5 text-blue-600" />
             <div>
-              <div className="font-semibold text-blue-900">
-                {company.name}
-              </div>
+              <div className="font-semibold text-blue-900">{company.name}</div>
               <div className="text-blue-700">
-                {company.industry} • {company.employees} employees • {company.revenue} revenue
+                {company.industry} • {company.employees} employees •{" "}
+                {company.revenue} revenue
               </div>
             </div>
           </div>
