@@ -75,11 +75,13 @@ The workflows require the following GitHub permissions:
 ## Preview URLs
 
 Preview URLs follow this pattern:
+
 ```
 https://{owner}.github.io/{repo}/pr-{number}/
 ```
 
 For this repository:
+
 ```
 https://geertvdc.github.io/zure-vibecoding/pr-{number}/
 ```
