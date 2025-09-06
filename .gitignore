@@ -1,0 +1,21 @@
+# .gitignore
+
+# Node modules
+node_modules/
+
+# Build output
+/dist/
+/build/
+
+# Environment variables
+.env
+
+# MacOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/
